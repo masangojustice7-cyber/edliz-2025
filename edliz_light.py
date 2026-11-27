@@ -86,20 +86,11 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(open("sw.js", "rb").read())
             return
         if parsed.path in ("/icon-192.png", "/icon-512.png"):
-            import zlib, struct
-            size = 192 if "192" in parsed.path else 512
-            # solid #0b3d5f PNG, no PIL needed
-            def chunk(t, d):
-                c = struct.pack(">I", len(d)) + t + d
-                c += struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
-                return c
-            raw = b"".join(b"\x00" + bytes([11,61,95])*size for _ in range(size))
-            png = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", size, size, 8, 2, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(raw)) + chunk(b"IEND", b"")
-            self.send_response(200)
-            self.send_header("Content-Type", "image/png")
-            self.end_headers()
-            self.wfile.write(png)
-            return
+    self.send_response(200)
+    self.send_header("Content-Type", "image/png")
+    self.end_headers()
+    self.wfile.write(open(parsed.path[1:], "rb").read())
+    return
         # --- end PWA ---
         params = parse_qs(parsed.query)
         q = params.get("q", [""])[0]
