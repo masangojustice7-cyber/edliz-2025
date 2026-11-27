@@ -79,13 +79,13 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wflile.write(open("manifest.json", "rb").read())
             return
-        if parsed.path == "/sw.js":
-            self.send_response(200)
-            self.send_header("Content-Type", "application/javascript")
-            self.end_headers()
-            self.wfile.write(open("sw.js", "rb").read())
-            return
-    if parsed.path in ("/icon-192.png", "/icon-512.png"):
+if parsed.path == "/sw.js":
+    self.send_response(200)
+    self.send_header("Content-Type", "application/javascript")
+    self.end_headers()
+    self.wfile.write(open("sw.js", "rb").read())
+    return
+if parsed.path in ("/icon-192.png", "/icon-512.png"):
     self.send_response(200)
     self.send_header("Content-Type", "image/png")
     self.end_headers()
