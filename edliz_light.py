@@ -92,12 +92,12 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(open(urlparse(self.path).path[1:], "rb").read())
             return
         # --- end PWA ---
-    q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
-    chapter = parse_qs(urlparse(self.path).query).get("chapter", ["All"])[0]
-    weight = parse_qs(urlparse(self.path).query).get("weight", [""])[0]
-    mgkg = parse_qs(urlparse(self.path).query).get("mgkg", [""])[0]
-    calc_result = ""
-    if weight and mgkg:
+        q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
+        chapter = parse_qs(urlparse(self.path).query).get("chapter", ["All"])[0]
+        weight = parse_qs(urlparse(self.path).query).get("weight", [""])[0]
+        mgkg = parse_qs(urlparse(self.path).query).get("mgkg", [""])[0]
+        calc_result = ""
+        if weight and mgkg:
         try:
             calc_result = f"<div style='background:#E8F5E9;padding:10px;border-radius:8px'><b>Result: {round(float(weight)*float(mgkg),1)} mg per dose</b></div>"
         except:
