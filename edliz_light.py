@@ -142,10 +142,8 @@ class Handler(BaseHTTPRequestHandler):
         {results_html}
         <p style='color:#E65100;background:#FFF3E0;padding:10px;border-radius:8px'>Reference only. Verify with official EDLIZ 2025 book, allergy, renal, pregnancy & senior clinician.</p>
         <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
-}
-<script>
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+</script>
 </body></html>"""
         self.send_response(200)
         self.send_header("Content-type", "text/html")
