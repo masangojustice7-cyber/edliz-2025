@@ -77,20 +77,20 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/manifest+json")
             self.end_headers()
-            self.wflile.write(open("manifest.json", "rb").read())
+            self.wfile.write(open("manifest.json", "rb").read())
             return
-if parsed.path == "/sw.js":
-    self.send_response(200)
-    self.send_header("Content-Type", "application/javascript")
-    self.end_headers()
-    self.wfile.write(open("sw.js", "rb").read())
+        if parsed.path == "/sw.js":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/javascript")
+            self.end_headers()
+            self.wfile.write(open("sw.js", "rb").read())
             return
-if parsed.path in ("/icon-192.png", "/icon-512.png"):
-    self.send_response(200)
-    self.send_header("Content-Type", "image/png")
-    self.end_headers()
-    self.wfile.write(open(parsed.path[1:], "rb").read())
-        return
+        if parsed.path in ("/icon-192.png", "/icon-512.png"):
+            self.send_response(200)
+            self.send_header("Content-Type", "image/png")
+            self.end_headers()
+            self.wfile.write(open(parsed.path[1:], "rb").read())
+            return
         # --- end PWA ---
     params = parse_qs(parsed.query)
     q = params.get("q", [""])[0]
