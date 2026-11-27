@@ -77,13 +77,13 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/manifest+json")
             self.end_headers()
-            self.wflile.write(open("manifest.json"
+            self.wflile.write(open("manifest.json", "rb").read())
             return
         if parsed.path == "/sw.js":
             self.send_response(200)
             self.send_header("Content-Type", "application/javascript")
             self.end_headers()
-            self.wfile.write(open("sw.js",
+            self.wfile.write(open("sw.js", "rb").read())
             return
         if parsed.path in ("/icon-192.png", "/icon-512.png"):
             import zlib, struct
