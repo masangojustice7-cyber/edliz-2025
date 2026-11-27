@@ -72,6 +72,7 @@ def search(q, chapter="All"):
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
+        params = parse_qs(urlparse(self.path).query)
         # --- PWA files ---
         if parsed.path == "/manifest.json":
             self.send_response(200)
@@ -92,7 +93,6 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(open(urlparse(self.path).path[1:], "rb").read())
             return
         # --- end PWA ---
-        params = parse_qs(urlparse(self.path).query)
         q = params.get("q", [""])[0]
     chapter = params.get("chapter", ["All"])[0]
     weight = params.get("weight", [""])[0]
