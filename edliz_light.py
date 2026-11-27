@@ -89,10 +89,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "image/png")
             self.end_headers()
-            self.wfile.write(open(parsed.path[1:], "rb").read())
+            self.wfile.write(open(urlparse(self.path).path[1:], "rb").read())
             return
         # --- end PWA ---
-    params = parse_qs(parsed.query)
+    params = parse_qs(urlparse(self.path).query)
     q = params.get("q", [""])[0]
     chapter = params.get("chapter", ["All"])[0]
     weight = params.get("weight", [""])[0]
