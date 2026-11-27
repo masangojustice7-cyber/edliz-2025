@@ -92,8 +92,8 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(open(urlparse(self.path).path[1:], "rb").read())
             return
         # --- end PWA ---
-    params = parse_qs(urlparse(self.path).query)
-    q = params.get("q", [""])[0]
+        params = parse_qs(urlparse(self.path).query)
+        q = params.get("q", [""])[0]
     chapter = params.get("chapter", ["All"])[0]
     weight = params.get("weight", [""])[0]
     mgkg = params.get("mgkg", [""])[0]
