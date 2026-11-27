@@ -141,7 +141,12 @@ class Handler(BaseHTTPRequestHandler):
         <p>Example: 20kg x 15mg/kg = 300mg Paracetamol</p></div>
         {results_html}
         <p style='color:#E65100;background:#FFF3E0;padding:10px;border-radius:8px'>Reference only. Verify with official EDLIZ 2025 book, allergy, renal, pregnancy & senior clinician.</p>
-        </body></html>"""
+        <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+<script>
+</body></html>"""
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
