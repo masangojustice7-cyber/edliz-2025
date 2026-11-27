@@ -94,7 +94,7 @@ class Handler(BaseHTTPRequestHandler):
             results_html = "<h3> Chapters</h3>" + "".join([f"<div>{no}. {name} - Book p{start}</div>" for no, name, start in CHAPTERS])
         chapter_options = "<option>All</option>" + "".join([f"<option {'selected' if chapter==f'{n}. {name}' else ''}>{n}. {name}</option>" for n, name, _ in CHAPTERS])
         page = f"""<!DOCTYPE html><html><head><meta charset=utf-8><meta name='viewport' content='width=device-width, initial-scale=1'>
-        <title>EDLIZ 2025</title><style>
+        <title><link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#0b3d5f"><script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js')</script>EDLIZ 2025</title><style>
         body{{font-family:Arial;background:#F5F5F5;padding:12px}}
         input,select{{padding:10px;width:100%;margin:5px 0;border-radius:8px;border:1px solid #ccc;font-size:16px}}
         button{{background:#1B5E20;color:white;padding:12px;width:100%;border:none;border-radius:8px;font-size:16px}}
