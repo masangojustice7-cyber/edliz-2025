@@ -71,7 +71,8 @@ def search(q, chapter="All"):
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        
+        parsed = urlparse(self.path)
+        query = parse_qs(parsed.query)
         # --- PWA files ---
         if parsed.path == "/manifest.json":
             self.send_response(200)
