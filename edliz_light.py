@@ -98,10 +98,10 @@ class Handler(BaseHTTPRequestHandler):
         mgkg = parse_qs(urlparse(self.path).query).get("mgkg", [""])[0]
         calc_result = ""
         if weight and mgkg:
-        try:
-            calc_result = f"<div style='background:#E8F5E9;padding:10px;border-radius:8px'><b>Result: {round(float(weight)*float(mgkg),1)} mg per dose</b></div>"
-        except:
-            calc_result = "<b>Enter valid numbers</b>"
+            try:
+                calc_result = f"<div style='background:#E8F5E9;padding:10px;border-radius:8px'><b>Result: {round(float(weight)*float(mgkg),1)} mg per dose</b></div>"
+            except:
+                calc_result = "<b>Enter valid numbers</b>"
         results_html = ""
         if len(q) >= 2:
             rows = search(q, chapter)
