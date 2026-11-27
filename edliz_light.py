@@ -84,25 +84,25 @@ if parsed.path == "/sw.js":
     self.send_header("Content-Type", "application/javascript")
     self.end_headers()
     self.wfile.write(open("sw.js", "rb").read())
-    return
+        return
 if parsed.path in ("/icon-192.png", "/icon-512.png"):
     self.send_response(200)
     self.send_header("Content-Type", "image/png")
     self.end_headers()
     self.wfile.write(open(parsed.path[1:], "rb").read())
-    return
+        return
         # --- end PWA ---
-        params = parse_qs(parsed.query)
-        q = params.get("q", [""])[0]
-        chapter = params.get("chapter", ["All"])[0]
-        weight = params.get("weight", [""])[0]
-        mgkg = params.get("mgkg", [""])[0]
-        calc_result = ""
-        if weight and mgkg:
-            try:
-                calc_result = f"<div style='background:#E8F5E9;padding:10px;border-radius:8px'><b>Result: {round(float(weight)*float(mgkg),1)} mg per dose</b></div>"
-            except:
-                calc_result = "<b>Enter valid numbers</b>"
+    params = parse_qs(parsed.query)
+    q = params.get("q", [""])[0]
+    chapter = params.get("chapter", ["All"])[0]
+    weight = params.get("weight", [""])[0]
+    mgkg = params.get("mgkg", [""])[0]
+    calc_result = ""
+    if weight and mgkg:
+        try:
+            calc_result = f"<div style='background:#E8F5E9;padding:10px;border-radius:8px'><b>Result: {round(float(weight)*float(mgkg),1)} mg per dose</b></div>"
+        except:
+            calc_result = "<b>Enter valid numbers</b>"
         results_html = ""
         if len(q) >= 2:
             rows = search(q, chapter)
